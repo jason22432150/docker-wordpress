@@ -2,11 +2,8 @@
 Use docker-compose create a complete docker wordpress container
 
 ``` sh
-
 git clone https://github.com/jason22432150/docker-wordpress.git
-
 docker-compose up -d
-
 ```
 
 This is docker-comporse.yml
