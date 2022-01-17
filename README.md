@@ -3,7 +3,8 @@ Use docker-compose create a complete docker wordpress container
 
 ``` sh
 git clone https://github.com/jason22432150/docker-wordpress.git
-cd docker-wordpress/
+mv docker-wordpress/ wordpress/
+cd wordpress/
 docker-compose up -d
 ```
 
