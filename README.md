@@ -7,7 +7,7 @@ cd docker-wordpress/
 docker-compose up -d
 ```
 
-This is docker-comporse.yml
+This is docker-compose.yml
 ```yml
 version: "3"
 services:
