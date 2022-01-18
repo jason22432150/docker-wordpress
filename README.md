@@ -9,6 +9,14 @@ docker-compose up -d
 ```
 
 This is docker-compose.yml
+```diff
+下方可修改部分
+! MYSQL_ROOT_PASSWORD
+! MYSQL_PASSWORD
+
++ ports:
++      - "2095:80"
+```
 ```yml
 version: "3"
 services:
