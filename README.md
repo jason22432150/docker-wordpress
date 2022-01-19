@@ -59,3 +59,26 @@ If you want to Remove it
 cd wordpress/
 docker-compose down -v
 ```
+
+docker-compoes wordpress Nginx reverse proxy
+```json
+server {
+    listen 80;
+    listen [::]:80;
+    index index.html;
+    server_name miku-izayoi-wordpress.tk;    # 若沒有domain的話，該行可以拿掉
+
+    location / {
+        proxy_pass http://localhost:2095;
+        # 把 IP、Protocol 等 header 都一起送給反向代理的 server
+
+        proxy_redirect     off;
+        proxy_set_header   Host $host;
+        proxy_set_header   X-Forwarded-Host $server_name;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+    }
+}
+```
