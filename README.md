@@ -39,6 +39,7 @@ services:
     image: wordpress:latest
     volumes:
       - wordpress_data:/var/www/html
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
       - "2095:80"
     restart: always
