@@ -11,47 +11,45 @@ docker-compose up -d
 This is docker-compose.yml
 ```diff
 下方可修改部分
-! MYSQL_ROOT_PASSWORD
-! MYSQL_PASSWORD
+! MYSQL_ROOT_PASSWORD: password
+! MYSQL_PASSWORD: password
+! WORDPRESS_DB_PASSWORD: password
 
 + ports:
 +      - "2095:80"
 ```
 ```yml
-version: "3"
+version: "3.9"
+
 services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: password
 
-   db:
-     image: mysql:8.0
-     command:
-      - --default_authentication_plugin=mysql_native_password
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
-
-   wordpress:
-     depends_on:
-       - db
-     image: wordpress:latest
-     # set the port here
-     ports:
-       - "2095:80"
-     restart: always
-     volumes:
-       - /user/wordpress/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    volumes:
+      - wordpress_data:/var/www/html
+    ports:
+      - "2095:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
 volumes:
-  db_data:
+  db_data: {}
+  wordpress_data: {}
 ```
 ****
 If you want to Remove it
