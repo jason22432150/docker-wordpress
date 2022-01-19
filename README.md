@@ -53,3 +53,9 @@ services:
 volumes:
   db_data:
 ```
+****
+If you want to Remove it
+```sh
+cd wordpress/
+docker-compose down -v
+```
