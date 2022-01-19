@@ -61,7 +61,11 @@ docker-compose down -v
 ```
 
 docker-compoes wordpress Nginx reverse proxy
-```json
+
+
+https://github.com/jason22432150/Nginx-reverse-proxy
+
+```nginx
 server {
     listen 80;
     listen [::]:80;
@@ -71,11 +75,9 @@ server {
     location / {
         proxy_pass http://localhost:2095;
         # 把 IP、Protocol 等 header 都一起送給反向代理的 server
-
         proxy_redirect     off;
         proxy_set_header   Host $host;
         proxy_set_header   X-Forwarded-Host $server_name;
-
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
