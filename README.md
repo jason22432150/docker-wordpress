@@ -69,7 +69,7 @@ server {
     listen 80;
     listen [::]:80;
     index index.html;
-    server_name miku-izayoi-wordpress.tk;    # 若沒有domain的話，該行可以拿掉
+    server_name your-domain.name;    # 若沒有domain的話，該行可以拿掉
 
     location / {
         proxy_pass http://localhost:2095;
