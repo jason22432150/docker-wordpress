@@ -17,6 +17,7 @@ services:
       - db
     image: wordpress:latest
     volumes:
+      - /mnt:/mnt
       - wordpress_data:/var/www/html
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
