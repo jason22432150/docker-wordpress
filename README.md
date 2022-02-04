@@ -23,6 +23,7 @@ version: "3.9"
 
 services:
   db:
+    container_name: wordpress-db
     image: mysql:5.7
     volumes:
       - db_data:/var/lib/mysql
@@ -34,6 +35,7 @@ services:
       MYSQL_PASSWORD: password
 
   wordpress:
+    container_name: wordpress
     depends_on:
       - db
     image: wordpress:latest
