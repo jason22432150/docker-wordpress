@@ -27,6 +27,7 @@ services:
     image: mysql:5.7
     command: --max_allowed_packet=32505856
     volumes:
+      - /mnt:/mnt
       - db_data:/var/lib/mysql
     restart: always
     environment:
