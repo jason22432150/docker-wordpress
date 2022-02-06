@@ -25,6 +25,7 @@ services:
   db:
     container_name: wordpress-db
     image: mysql:5.7
+    command: --max_allowed_packet=32505856
     volumes:
       - db_data:/var/lib/mysql
     restart: always
